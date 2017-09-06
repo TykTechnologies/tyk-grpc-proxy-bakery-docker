@@ -1,7 +1,8 @@
 #!/bin/bash
 set -e
 
-WORKDIR=/develop/go/src/work
+NEW_UUID=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
+WORKDIR=/develop/go/src/$NEW_UUID
 PROTOFILE=$WORKDIR/$1
 SERVICENAME=$2
 OPTSFILE=/proto/$3
@@ -27,7 +28,7 @@ echo "Generating proxy"
 protoc -I/usr/local/include -I. -I$GOPATH/src -I$GOPATH/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis --grpc-gateway_out=logtostderr=true:. $PROTOFILE
 
 echo "Packaging"
-cd $WORKDIR/work
+cd $WORKDIR/$NEW_UUID
 echo "--> Getting dependencies"
 go get .
 echo "--> Preparing files"
