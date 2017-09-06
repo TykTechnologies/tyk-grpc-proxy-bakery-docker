@@ -1,11 +1,16 @@
 ## Tyk REST GRPC Proxy Plugin Bakery
 
-To use this container:
+To use this container you must have a copy of the Tyk source:
 
-Plave your `proto` file into the `proto` folder so the container can find it. Then run the container:
+    git clone https://github.com/TykTechnologies/tyk.git
+    cd tyk
+    git checkout grpc-proxy
+    cd ..
+    mkdir proto
 
-    docker run --rm -v $PWD/proto/:/proto tykio/bakery {PROTOFILENAME} {SERVICENAME}
+Place your `proto` file into the `proto/` folder so the container can find it. Then run the container:
 
+    docker run --rm -v $PWD/proto/:/proto -v $PWD/tyk/vendor/:/go/src tykio/bakery {PROTOFILENAME} {SERVICENAME}
 
 - `PROTOFILENAME` Will be *just the name* of the file so we know what proto file to work on
 - `SERVICENAME` Will be the CamelCase name of your service, so if it is called `your_service`, this will be `YourService` it will start with a capital letter.

@@ -2,7 +2,7 @@
 set -e
 
 NEW_UUID=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
-WORKDIR=/develop/go/src/$NEW_UUID
+WORKDIR=/go/src/$NEW_UUID
 PROTOFILE=$WORKDIR/$1
 SERVICENAME=$2
 OPTSFILE=/proto/$3
@@ -21,6 +21,7 @@ mkdir $WORKDIR
 cp /proto/$1 $WORKDIR
 
 cd $WORKDIR
+
 echo "Generating stub"
 protoc -I/usr/local/include -I. -I$GOPATH/src -I$GOPATH/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis --go_out=plugins=grpc:. $PROTOFILE
 

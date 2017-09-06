@@ -16,14 +16,13 @@ RUN ldconfig
 RUN wget https://storage.googleapis.com/golang/go1.9.linux-amd64.tar.gz
 RUN tar -C /usr/local -xzf go1.9.linux-amd64.tar.gz
 RUN mkdir /wrap
-RUN mkdir /develop
-RUN mkdir /develop/go/
-RUN mkdir /develop/go/src
-RUN mkdir /develop/go/bin 
-RUN mkdir /develop/go/pkg 
+RUN mkdir /go/
+RUN mkdir /go/src
+RUN mkdir /go/bin 
+RUN mkdir /go/pkg 
 
-ENV PATH=$PATH:/usr/local/go/bin::/develop/go/bin
-ENV GOPATH=/develop/go/
+ENV PATH=$PATH:/usr/local/go/bin::/go/bin
+ENV GOPATH=/go
 
 RUN go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway
 RUN go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger
