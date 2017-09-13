@@ -36,7 +36,7 @@ echo "--> Preparing files"
 sed -i -E 's/package ([a-zA-Z0-9_]+)/package main/g' *.go
 cp /wrap/*.go .
 
-sed -i -E 's/changeMe/Register'$SERVICENAME'HandlerFromEndpoint/' opts.go 
+sed -i -E 's/entryPointFunction/Register'$SERVICENAME'HandlerFromEndpoint/' opts.go 
 
 if [ -n "${3}" ]; then
     echo "--> Detected custom options file"

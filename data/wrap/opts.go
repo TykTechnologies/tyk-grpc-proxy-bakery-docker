@@ -8,4 +8,4 @@ func getOpts() []grpc.DialOption {
 	}
 }
 
-var doRegister = changeMe
+var doRegister = entryPointFunction
