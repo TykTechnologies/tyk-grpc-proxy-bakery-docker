@@ -30,8 +30,10 @@ RUN go get -u github.com/golang/protobuf/protoc-gen-go
 
 COPY data/wrap/*.go /wrap/
 
+COPY data/build_grpc.sh /build_grpc.sh
 COPY data/entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
+RUN chmod +x /build_grpc.sh
 
 VOLUME ["/develop/go", "/proto"]
 ENTRYPOINT ["/entrypoint.sh"]

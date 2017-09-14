@@ -10,7 +10,7 @@ To use this container you must have a copy of the Tyk source:
 
 Place your `proto` file into the `proto/` folder so the container can find it. Then run the container:
 
-    docker run --rm -v $PWD/proto/:/proto -v $PWD/tyk/vendor/:/go/src tykio/bakery {PROTOFILENAME} {SERVICENAME}
+    docker run --rm -v $PWD/proto/:/proto -v $PWD/tyk/vendor/:/go/src tykio/bakery grpc {PROTOFILENAME} {SERVICENAME}
 
 - `PROTOFILENAME` Will be *just the name* of the file so we know what proto file to work on
 - `SERVICENAME` Will be the CamelCase name of your service, so if it is called `your_service`, this will be `YourService` it will start with a capital letter.
